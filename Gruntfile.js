@@ -1,9 +1,6 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         clean: ['./output'],
-        execute: {
-            target: { src: ['index.js'] }
-        },
     	handlebars: {
     		compile: {
     			options: {
@@ -23,5 +20,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-execute');
     grunt.loadNpmTasks('grunt-contrib-clean');
 
-    grunt.registerTask('default', ['clean', 'handlebars', 'execute']);
+    grunt.registerTask('run', function() {
+        grunt.util.spawn({
+            cmd: 'node',
+            args: ['index.js', '--jerry', 'bin/jerry.json']
+        });
+    });
+
+    grunt.registerTask('default', ['clean', 'handlebars', 'run']);
 }
