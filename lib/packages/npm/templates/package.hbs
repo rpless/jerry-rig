@@ -1,0 +1,14 @@
+{
+	"name": "{{projectName}}",
+	"version": "{{version}}",
+	"dependencies": {
+		{{#each npm.depends}}
+			"{{@key}}": "{{this}}"{{commaIfNotLast @index ../npm.depends}}
+		{{/each}}
+	},
+	"devDependencies": {
+		{{#each npm.devDepends}}
+			"{{@key}}": "{{this}}"{{commaIfNotLast @index ../npm.depends}}
+		{{/each}}
+	}
+}

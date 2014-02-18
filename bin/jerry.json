@@ -1,4 +1,12 @@
 {
 	"projectName": "Test Project",
-	"version": "0.0.0"
+	"version": "0.0.0",
+	"npm": {
+		"depends": {
+			"underscore": "1.6.0"
+		},
+		"devDepends": {
+			"underscore": "1.6.0"
+		}
+	}
 }

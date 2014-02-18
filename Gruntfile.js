@@ -1,3 +1,18 @@
+var fs = require('fs'),
+    _ = require('underscore'),
+    helpers = {
+        generateCompileObject: function() {
+            var templates = {},
+            contents = fs.readdirSync('./lib/packages'),
+            directories = _(contents).filter(function(content) { return fs.lstatSync('./lib/packages/' + content).isDirectory(); });
+            _(directories).each(function(directory) {
+               var templateDir = './lib/packages/' + directory;
+                templates[templateDir + '/' + directory + '.template.js'] = templateDir + '/templates/*.hbs';
+            });
+            return templates;
+        }
+    };
+
 module.exports = function(grunt) {
     grunt.initConfig({
         clean: ['./output'],
@@ -10,9 +25,7 @@ module.exports = function(grunt) {
                     },
 
     			},
-    			files: {
-    				'./bin/templates.js': ['./templates/*.hbs', './templates/grunt/*.hbs']
-    			}
+    			files: helpers.generateCompileObject()
     		}
     	}
     });
@@ -20,12 +33,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-execute');
     grunt.loadNpmTasks('grunt-contrib-clean');
 
-    grunt.registerTask('run', function() {
-        grunt.util.spawn({
-            cmd: 'node',
-            args: ['index.js', '--jerry', 'bin/jerry.json']
-        });
-    });
-
-    grunt.registerTask('default', ['clean', 'handlebars', 'run']);
+    grunt.registerTask('default', ['clean', 'handlebars']);
 }
