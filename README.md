@@ -4,28 +4,44 @@ Jerry Rig is a tool for starting web applications fast.
 ## Starter Specification
 Running Jerry Rig require you have a jerry.json file.
 The object inside the jerry.json file can have the following basic properties:<br/>
-```
+```JSON
 {
-	"projectName": <Name for the project>,
-	"version": <The Version of the project>,
-	"clientDirectory": <The directory were all client-side code lives, if left blank it defaults to the root directory>
+    "projectName": <Name for the project>,
+    "version": <The Version of the project>
 }
 ```
 After you define the basic properties you can define more application specific properties. 
 These are all detailed in the subsections below.
 
-### Node Package Manager
-```
+### Structuring Projects
+You can structure the resulting directory by adding a key-value pair like this:
+```JSON
 {
-	...
-	"npm": {
-		depends: {
-			<package> : <version>
-		},
-		devDepends: {
-			<package> : <version>
-		}
-	}
-	...
+    ...
+    "structure": {
+        ".": ["index.html"],
+        "webapp":{
+            "css": []
+        }
+    }
+    ...
+}
+```
+This adds an empty file called index.html in the root directory of the project and a folder called webapp.
+Inside the webapp directory is an empty folder called css.
+
+### Node Package Manager
+```JSON
+{
+    ...
+    "npm": {
+        depends: {
+            <package> : <version>
+        },
+        devDepends: {
+            <package> : <version>
+        }
+    }
+    ...
 }
 ```
