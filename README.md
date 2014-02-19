@@ -1,6 +1,9 @@
 # Jerry Rig
 Jerry Rig is a tool for starting web applications fast.
 
+### Requirements
+You need nodejs and more importantly npm to run Jerry Rig.
+
 ## Starter Specification
 Running Jerry Rig require you have a jerry.json file.
 The object inside the jerry.json file can have the following basic properties:<br/>
