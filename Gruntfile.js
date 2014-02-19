@@ -1,12 +1,12 @@
 var fs = require('fs'),
     _ = require('underscore'),
     helpers = {
-        generateCompileObject: function() {
+        generateCompileObject: function(target) {
             var templates = {},
-            contents = fs.readdirSync('./lib/packages'),
-            directories = _(contents).filter(function(content) { return fs.lstatSync('./lib/packages/' + content).isDirectory(); });
+            contents = fs.readdirSync('./lib/' + target),
+            directories = _(contents).filter(function(content) { return fs.lstatSync('./lib/' + target + '/' + content).isDirectory(); });
             _(directories).each(function(directory) {
-               var templateDir = './lib/packages/' + directory;
+               var templateDir = './lib/' + target + '/' + directory;
                 templates[templateDir + '/' + directory + '.template.js'] = templateDir + '/templates/*.hbs';
             });
             return templates;
@@ -25,7 +25,9 @@ module.exports = function(grunt) {
                     },
 
     			},
-    			files: helpers.generateCompileObject()
+    			files: _.extend(helpers.generateCompileObject('build'), 
+                                helpers.generateCompileObject('dependency'),
+                                helpers.generateCompileObject('structure'))
     		}
     	}
     });

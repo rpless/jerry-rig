@@ -7,12 +7,14 @@
             "images": []
         }
     },
-    "npm": {
-        "depends": {
-            "underscore": "1.6.0"
-        },
-        "devDepends": {
-            "underscore": "1.6.0"
+    "dependencies": {
+        "npm": {
+            "depends": {
+                "underscore": "1.6.0"
+            },
+            "devDepends": {
+                "underscore": "1.6.0"
+            }
         }
     }
 }
