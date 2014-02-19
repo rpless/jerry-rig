@@ -1,12 +1,18 @@
 {
-	"projectName": "Test Project",
-	"version": "0.0.0",
-	"npm": {
-		"depends": {
-			"underscore": "1.6.0"
-		},
-		"devDepends": {
-			"underscore": "1.6.0"
-		}
-	}
+    "projectName": "Test Project",
+    "version": "0.0.0",
+    "structure": {
+        ".": ["index.html"],
+        "assets": {
+            "images": []
+        }
+    },
+    "npm": {
+        "depends": {
+            "underscore": "1.6.0"
+        },
+        "devDepends": {
+            "underscore": "1.6.0"
+        }
+    }
 }
