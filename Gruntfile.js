@@ -26,14 +26,27 @@ module.exports = function(grunt) {
 
     			},
     			files: _.extend(helpers.generateCompileObject('build'), 
-                                helpers.generateCompileObject('dependency'),
+                                helpers.generateCompileObject('dependencies'),
                                 helpers.generateCompileObject('structure'))
     		}
-    	}
+    	},
+        jasmine_node: {
+            specNameMatcher: "./spec", // load only specs containing specNameMatcher
+            projectRoot: ".",
+            requirejs: false,
+            forceExit: true,
+            jUnit: {
+                report: false,
+                savePath : "./build/reports/jasmine/",
+                useDotNotation: true,
+                consolidate: true
+            }
+        }
     });
     grunt.loadNpmTasks('grunt-contrib-handlebars');
     grunt.loadNpmTasks('grunt-execute');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-jasmine-node');
 
-    grunt.registerTask('default', ['clean', 'handlebars']);
+    grunt.registerTask('default', ['clean', 'handlebars', 'jasmine_node']);
 }
